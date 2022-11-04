@@ -1,0 +1,29 @@
+<ion-header>
+<ion-toolbar color="primary">
+<ion-buttons slot="start" defaulthref="/tabs/(spaceship:spaceship)"> 
+<ion-back-button></ion-back-button>
+</ion-buttons>
+<ion-title>{{ spaceship?.title }}</ion-title> 
+<ion-buttons slot="end">
+<ion-button (click)="unfavoriteSpecimen()" *ngif="isFavorite">
+<ion-icon name="star" slot="icon-only" color="secondary"></ion-icon>
+</ion-button>
+<ion-button (click)="favoriteSpaceship()" *ngif="!isFavorite">
+<ion-icon name="star-outline" slot="icon-only" color="secondary"></ion-icon> 
+</ion-button>
+</ion-buttons> 
+</ion-toolbar>
+</ion-header> 
+
+<ion-content padding="">
+
+<ion-card *ngif="spaceship" class="animal">
+<ion-card-header>Episode {{ spaceship.episode_id }}: {{ spaceship.title }}</ion-card-header> 
+<ion-card-content>
+{{ spaceship.opening_crawl }}
+</ion-card-content>
+
+<ion-item class="spaceship-info" lines="none"> 
+<ion-icon name="spaceship" slot="start"></ion-icon> 
+Director: {{ spaceship.director }}
+ 

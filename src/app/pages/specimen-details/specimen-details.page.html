@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>specimen-details</ion-title>
-  </ion-toolbar>
-</ion-header>
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
-<ion-content>
+@Component({
+  selector: 'app-specimen-details',
+  templateUrl: './specimen-details.page.html',
+  styleUrls: ['./specimen-details.page.scss'],
+})
+export class SpecimenDetailsPage implements OnInit {
 
-</ion-content>
+  film: any;
+
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+
+  ngOnInit() {
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.http.get(`https://swapi.dev/api/films/${id}`).subscribe(res => {
+      this.film = res;
+    });
+  }
+
+}
